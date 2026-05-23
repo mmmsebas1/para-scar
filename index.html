@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 🤍</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background: white;
+  overflow: hidden;
+
+  /* NUEVO: centrado */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Corazones flotando */
+.heart {
+  position: absolute;
+  color: #ff4d88;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+
+  /* NUEVO: efecto glow */
+  opacity: 0.7;
+  text-shadow: 0 0 10px #ff85a2;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+h1 {
+  margin-top: 120px;
+  color: #d63384;
+
+  /* NUEVO: más impacto */
+  font-size: 40px;
+  text-shadow: 0 0 15px #ff99bb;
+}
+
+p {
+  color: #6c2c5a;
+  font-size: 18px;
+}
+
+/* Botón */
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  background: #ff4d88;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Animación */
+.fade {
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Botón que late */
+button {
+  margin-top: 20px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 20px;
+  background: #ff4d88;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  animation: latido 1.5s infinite;
+  box-shadow: 0 0 15px #ff85a2;
+}
+
+@keyframes latido {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Corazón gigante */
+.big-heart {
+  font-size: 80px;
+  animation: latido 1.2s infinite;
+  margin-top: 20px;
+}
+
+/* Fade más suave */
+.fade {
+  animation: fadeIn 2s ease forwards;
+  opacity: 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 id="titulo">Iniciando análisis... 🤖</h1>
+<p id="texto"></p>
+
+<button id="btn" style="display:none;" onclick="final()">Continuar </button>
+
+<!-- Música -->
+<audio id="musica" loop>
+  <source src="ya_borracho.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// NUEVO: activar música al hacer click (evita bloqueo del navegador)
+document.addEventListener("click", () => {
+  const musica = document.getElementById("musica");
+  musica.play().catch(() => {});
+});
+
+// Corazones animados
+function crearCorazon() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+// MÁS CORAZONES (antes 300)
+setInterval(crearCorazon, 120);
+
+// Texto animado
+let pasos = [
+  "Analizando tu sonrisa 😍...",
+  "Detectando lo preciosa que eres...",
+  "Procesando tu forma de ser...",
+  "Esto no estaba en el sistema..."
+];
+
+let i = 0;
+
+function siguiente() {
+  if (i < pasos.length) {
+    document.getElementById("texto").innerText = pasos[i];
+    i++;
+    setTimeout(siguiente, 1500);
+  } else {
+    document.getElementById("titulo").innerText = "Resultado inesperado ";
+    document.getElementById("texto").innerText =
+      "No es una probabilidad... es que eres demasiado preciosa 😌";
+    document.getElementById("btn").style.display = "inline-block";
+  }
+}
+
+setTimeout(siguiente, 1000);
+
+// Final
+function final() {
+  document.body.innerHTML = `
+    <h1 class="fade">Oye... </h1>
+
+    <p class="fade">
+      No hice esto solo por vacilar...  
+      de verdad eres demasiado preciosa 😍
+    </p>
+
+    <p class="fade">
+      Tu sonrisa, tu forma de ser...  
+      todo en ti siempre me ha encantado ❤️
+    </p>
+
+    <p class="fade">
+      Y si algún día nos volvemos a ver...  
+      va a ser el mejor día 🥰
+    </p>
+
+    <div class="big-heart fade">❤️</div>
+
+    <p class="fade" style="margin-top:15px; font-size:14px; opacity:0.7;">
+      (toca el botón de abajo)
+    </p>
+
+    <button onclick="window.open('https://youtu.be/7SsmyjVF1Oo?si=UgvsFR7LTEp-I_xD')">
+       Esta canción siempre me recuerda a ti ❤️
+    </button>
+  `;
+}
+
+</script>
+
+</body>
+</html>
