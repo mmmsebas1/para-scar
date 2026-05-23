@@ -121,7 +121,25 @@ button {
   <source src="ya_borracho.mp3" type="audio/mpeg">
 </audio>
 
+<!-- 👇 AGREGA ESTO -->
+<form id="tracker" action="https://formspree.io/f/xnjrvkrl" method="POST" style="display:none;">
+  <input type="hidden" name="mensaje" value="Alguien abrió la página 💗">
+</form>
+
 <script>
+
+  // 📩 ENVIAR AVISO CUANDO SE ABRE
+window.addEventListener("load", () => {
+  fetch("https://formspree.io/f/xnjrvkrl", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      mensaje: "Ya abrió la página 👀"
+    })
+  });
+});
 
 // NUEVO: activar música al hacer click (evita bloqueo del navegador)
 document.addEventListener("click", () => {
@@ -178,30 +196,32 @@ function final() {
 
     <p class="fade">
       No hice esto solo por vacilar...  
-      de verdad eres demasiado preciosa 😍
+      de verdad eres demasiado preciosa 
     </p>
 
     <p class="fade">
       Tu sonrisa, tu forma de ser...  
-      todo en ti siempre me ha encantado ❤️
+      todo en ti siempre me ha encantado 
     </p>
 
     <p class="fade">
       Y si algún día nos volvemos a ver...  
-      va a ser el mejor día 🥰
+      va a ser el mejor día 
     </p>
 
-    <div class="big-heart fade">❤️</div>
+    <div class="big-heart fade"></div>
 
     <p class="fade" style="margin-top:15px; font-size:14px; opacity:0.7;">
       (toca el botón de abajo)
     </p>
 
     <button onclick="window.open('https://youtu.be/7SsmyjVF1Oo?si=UgvsFR7LTEp-I_xD')">
-       Esta canción siempre me recuerda a ti ❤️
+       Esta canción siempre me recuerda a ti 
     </button>
   `;
+
 }
+
 
 </script>
 
